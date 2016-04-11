@@ -17,8 +17,10 @@ namespace PartyNow.DataContract.Service
         {
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             var query = $"{_baseUrl}?start_date={today}";
-            var wc = new HttpClient();
-            return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
+            using (var wc = new HttpClient())
+            {
+                return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
+            }
         } 
     }
 }

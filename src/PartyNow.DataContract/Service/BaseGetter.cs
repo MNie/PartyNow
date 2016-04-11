@@ -15,8 +15,10 @@ namespace PartyNow.DataContract.Service
 
         public virtual async Task<IEnumerable<TItem>> Get()
         {
-            var wc = new HttpClient();
-            return JsonConvert.DeserializeObject<IEnumerable<TItem>>(await wc.GetStringAsync(_baseUrl));
+            using (var wc = new HttpClient())
+            {
+                return JsonConvert.DeserializeObject<IEnumerable<TItem>>(await wc.GetStringAsync(_baseUrl));
+            }
         }
     }
 }
