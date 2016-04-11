@@ -7,15 +7,13 @@ using Newtonsoft.Json;
 
 namespace PartyNow.DataContract.Service
 {
-    public class EventsGetter
+    public class EventsGetter : BaseGetter<Events>
     {
-        private readonly string _baseUrl;
-        public EventsGetter(string baseUrl)
+        public EventsGetter(string baseUrl) : base(baseUrl) 
         {
-            _baseUrl = baseUrl;
         }
 
-        public async Task<IEnumerable<Events>> Get()
+        public override async Task<IEnumerable<Events>> Get()
         {
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             var query = $"{_baseUrl}?start_date={today}";

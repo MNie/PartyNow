@@ -21,5 +21,46 @@ namespace PartyNow.DataContract.Tests
                 @event.name.ShouldNotBeNullOrWhiteSpace();
             });
         }
+
+        [Fact]
+        public void should_return_valid_organizers_list()
+        {
+            var serviceCaller = new OrganizersGetter(@"http://planer.info.pl/api/rest/organizers.json");
+
+            var organizers = serviceCaller.Get().Result.ToList();
+
+            organizers.Count().ShouldBeGreaterThan(0);
+            organizers.ForEach(organizer =>
+            {
+                organizer.id.ShouldBeGreaterThan(0);
+                organizer.designation.ShouldNotBeNullOrWhiteSpace();
+            });
+        }
+
+        [Fact]
+        public void should_return_valid_categories_list()
+        {
+            var serviceCaller = new CategoriesGetter(@"http://planer.info.pl/api/rest/categories.json");
+
+            var categories = serviceCaller.Get().Result.ToList();
+            categories.Count().ShouldBeGreaterThan(0);
+            categories.ForEach(category =>
+            {
+                category.name.ShouldNotBeNullOrWhiteSpace();
+            });
+        }
+
+        [Fact]
+        public void should_return_valid_places_list()
+        {
+            var serviceCaller = new PlacesGetter(@"http://planer.info.pl/api/rest/places.json");
+
+            var places = serviceCaller.Get().Result.ToList();
+            places.Count().ShouldBeGreaterThan(0);
+            places.ForEach(place =>
+            {
+                place.address.ShouldNotBeNull();
+            });
+        }
     }
 }
