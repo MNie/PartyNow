@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="test_query_builder.cs" />
     <Compile Include="test_that_events_are_return.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

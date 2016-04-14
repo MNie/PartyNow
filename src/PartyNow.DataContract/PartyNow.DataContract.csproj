@@ -38,6 +38,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EventsParametersConstants.cs" />
+    <Compile Include="Common\QueryBuilder.cs" />
+    <Compile Include="Common\TicketType.cs" />
     <Compile Include="Service\BaseGetter.cs" />
     <Compile Include="Service\CategoriesGetter.cs" />
     <Compile Include="Service\EventsGetter.cs" />

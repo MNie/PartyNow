@@ -9,7 +9,7 @@ namespace PartyNow.DataContract.Service
 {
     public class EventsGetter : BaseGetter<Events>
     {
-        public EventsGetter(string baseUrl) : base(baseUrl) 
+        public EventsGetter(string baseUrl) : base(baseUrl)
         {
         }
 
@@ -21,6 +21,6 @@ namespace PartyNow.DataContract.Service
             {
                 return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
             }
-        } 
+        }
     }
 }
