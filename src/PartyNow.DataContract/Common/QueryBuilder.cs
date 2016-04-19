@@ -6,7 +6,7 @@ namespace PartyNow.DataContract.Common
 {
     public class QueryBuilder
     {
-        private static Dictionary<string, string> queryParameters = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> QueryParameters = new Dictionary<string, string>()
         {
             {EventsParametersConstants.StartDate, null },
             {EventsParametersConstants.EndDate, null },
@@ -44,13 +44,13 @@ namespace PartyNow.DataContract.Common
 
         private QueryBuilder WhereMultiOptionalIs(string key, int[] ids)
         {
-            queryParameters[key] = JsonConvert.SerializeObject(ids);
+            QueryParameters[key] = JsonConvert.SerializeObject(ids);
             return this;
         }
 
         private QueryBuilder WhereSingleOptionIs(string key, string value)
         {
-            queryParameters[key] = value;
+            QueryParameters[key] = value;
             return this;
         }
 
@@ -71,7 +71,7 @@ namespace PartyNow.DataContract.Common
 
         public string CreateQuery()
         {
-            return $"?{string.Join("&", queryParameters.Where(x => x.Value != null).Select(x => $"{x.Key}={x.Value}"))}";
+            return $"?{string.Join("&", QueryParameters.Where(x => x.Value != null).Select(x => $"{x.Key}={x.Value}"))}";
         }
     }
 }

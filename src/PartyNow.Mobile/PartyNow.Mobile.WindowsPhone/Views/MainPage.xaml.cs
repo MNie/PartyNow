@@ -12,6 +12,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PartyNow.DataContract.Common;
+using PartyNow.DataContract.Models;
+using PartyNow.DataContract.Service;
+using Events = PartyNow.Mobile.Views.Events;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,7 +29,21 @@ namespace PartyNow.Mobile
         public MainPage()
         {
             this.InitializeComponent();
-
+            var categories = new CategoriesGetter(@"http://planer.info.pl/api/rest/categories.json").Get().Result;
+            var organizers = new OrganizersGetter(@"http://planer.info.pl/api/rest/organizers.json").Get().Result;
+            var places = new PlacesGetter(@"http://planer.info.pl/api/rest/places.json").Get().Result;
+            foreach (var category in categories)
+            {
+                CategoriesCombobox.Items.Add(category);
+            }
+            foreach (var organizer in organizers)
+            {
+                OrganizersCombobox.Items.Add(organizer);
+            }
+            foreach (var place in places)
+            {
+                PlacesCombobox.Items.Add(place);
+            }
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
@@ -43,6 +61,16 @@ namespace PartyNow.Mobile
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var param = new QueryBuilder()
+                .WhereCategoryIs(new[] {((Categories) CategoriesCombobox.SelectedValue).id})
+                .WhereOrganizerIs(new[] {((Organizers) CategoriesCombobox.SelectedValue).id})
+                .WherePlaceIs(new[] {((Places) CategoriesCombobox.SelectedValue).id})
+                .CreateQuery();
+            Frame.Navigate(typeof (Events), param);
         }
     }
 }

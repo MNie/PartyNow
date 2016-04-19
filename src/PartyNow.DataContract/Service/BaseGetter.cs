@@ -13,11 +13,11 @@ namespace PartyNow.DataContract.Service
             _baseUrl = baseUrl;
         }
 
-        public virtual async Task<IEnumerable<TItem>> Get()
+        public virtual async Task<IList<TItem>> Get()
         {
             using (var wc = new HttpClient())
             {
-                return JsonConvert.DeserializeObject<IEnumerable<TItem>>(await wc.GetStringAsync(_baseUrl));
+                return JsonConvert.DeserializeObject<IList<TItem>>(await wc.GetStringAsync(_baseUrl));
             }
         }
     }

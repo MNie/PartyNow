@@ -13,13 +13,23 @@ namespace PartyNow.DataContract.Service
         {
         }
 
-        public override async Task<IEnumerable<Events>> Get()
+        public override async Task<IList<Events>> Get()
         {
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             var query = $"{_baseUrl}?start_date={today}";
             using (var wc = new HttpClient())
             {
-                return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
+                return JsonConvert.DeserializeObject<IList<Events>>(await wc.GetStringAsync(query));
+            }
+        }
+
+        public async /*Task<IEnumerable<Events>>*/ Task<string> GetBasedOnQuery(string baseQuery)
+        {
+            var query = $"{_baseUrl}{baseQuery}";
+            using (var wc = new HttpClient())
+            {
+                //return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
+                return await wc.GetStringAsync(query);
             }
         }
     }

@@ -2,7 +2,7 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETPortable,Version=v4.5,Profile=Profile7": {
+    ".NETPortable,Version=v4.5,Profile=Profile111": {
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -25,12 +25,12 @@
           "Microsoft.Bcl.Build": "1.0.14"
         },
         "compile": {
-          "lib/portable-net45+win8/System.Net.Http.Extensions.dll": {},
-          "lib/portable-net45+win8/System.Net.Http.Primitives.dll": {}
+          "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll": {},
+          "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll": {}
         },
         "runtime": {
-          "lib/portable-net45+win8/System.Net.Http.Extensions.dll": {},
-          "lib/portable-net45+win8/System.Net.Http.Primitives.dll": {}
+          "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll": {},
+          "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll": {}
         }
       },
       "newtonsoft.json/8.0.3": {
@@ -245,6 +245,6 @@
       "microsoft.net.http >= 2.2.29",
       "newtonsoft.json >= 8.0.3"
     ],
-    ".NETPortable,Version=v4.5,Profile=Profile7": []
+    ".NETPortable,Version=v4.5,Profile=Profile111": []
   }
 }
