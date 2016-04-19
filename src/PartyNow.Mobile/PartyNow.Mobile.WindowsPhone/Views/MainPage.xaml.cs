@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
+using PartyNow.Mobile.Common;
 using Events = PartyNow.Mobile.Views.Events;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -29,9 +30,10 @@ namespace PartyNow.Mobile
         public MainPage()
         {
             this.InitializeComponent();
-            var categories = new CategoriesGetter(@"http://planer.info.pl/api/rest/categories.json").Get().Result;
-            var organizers = new OrganizersGetter(@"http://planer.info.pl/api/rest/organizers.json").Get().Result;
-            var places = new PlacesGetter(@"http://planer.info.pl/api/rest/places.json").Get().Result;
+            LocalSettings.InitUrlsInStrageSettings();
+            var categories = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl")).Get().Result;
+            var organizers = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl")).Get().Result;
+            var places = new PlacesGetter(LocalSettings.GetUrl("placesUrl")).Get().Result;
             foreach (var category in categories)
             {
                 CategoriesCombobox.Items.Add(category);
@@ -46,6 +48,8 @@ namespace PartyNow.Mobile
             }
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
+
+        
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
