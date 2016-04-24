@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyNow.DataContract.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyNow.DataContract", "src\PartyNow.DataContract\PartyNow.DataContract.csproj", "{3EA9E87C-A55F-485C-BED9-011F4AB82054}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyNow.Mobile.Tests", "test\PartyNow.Mobile.Tests\PartyNow.Mobile.Tests.csproj", "{C521E2F9-6980-4570-8B8C-879EBFB23C39}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\PartyNow.Mobile\PartyNow.Mobile.Shared\PartyNow.Mobile.Shared.projitems*{873c0a26-be6f-44c8-a10a-be05a2a6960f}*SharedItemsImports = 13
@@ -112,6 +114,22 @@ Global
 		{3EA9E87C-A55F-485C-BED9-011F4AB82054}.Release|x64.Build.0 = Release|Any CPU
 		{3EA9E87C-A55F-485C-BED9-011F4AB82054}.Release|x86.ActiveCfg = Release|Any CPU
 		{3EA9E87C-A55F-485C-BED9-011F4AB82054}.Release|x86.Build.0 = Release|Any CPU
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|ARM.Build.0 = Debug|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|x64.ActiveCfg = Debug|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|x86.ActiveCfg = Debug|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|x86.Build.0 = Debug|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Debug|x86.Deploy.0 = Debug|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|Any CPU.ActiveCfg = Release|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|ARM.ActiveCfg = Release|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|ARM.Build.0 = Release|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|ARM.Deploy.0 = Release|ARM
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|x64.ActiveCfg = Release|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|x86.ActiveCfg = Release|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|x86.Build.0 = Release|x86
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,5 +140,6 @@ Global
 		{C60EBEA0-FAFF-46F2-B071-DA9F00562A86} = {4CCFEDAF-6452-4AC1-870D-3D876B4C645F}
 		{8E362A74-9FDA-4CD8-8727-CC5289B6CA55} = {4CCFEDAF-6452-4AC1-870D-3D876B4C645F}
 		{3EA9E87C-A55F-485C-BED9-011F4AB82054} = {4CCFEDAF-6452-4AC1-870D-3D876B4C645F}
+		{C521E2F9-6980-4570-8B8C-879EBFB23C39} = {4CCFEDAF-6452-4AC1-870D-3D876B4C645F}
 	EndGlobalSection
 EndGlobal
