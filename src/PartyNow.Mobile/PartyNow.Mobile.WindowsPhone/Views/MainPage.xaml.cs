@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,28 +29,45 @@ namespace PartyNow.Mobile
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Task<IList<Categories>> categories;
+        private Task<IList<Organizers>> organizers;
+        private Task<IList<Places>> places;
+
         public MainPage()
         {
             this.InitializeComponent();
             LocalSettings.InitUrlsInStrageSettings();
-            var categories = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl")).Get().Result;
-            var organizers = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl")).Get().Result;
-            var places = new PlacesGetter(LocalSettings.GetUrl("placesUrl")).Get().Result;
-            foreach (var category in categories)
-            {
-                CategoriesCombobox.Items.Add(category);
-            }
-            foreach (var organizer in organizers)
-            {
-                OrganizersCombobox.Items.Add(organizer);
-            }
-            foreach (var place in places)
-            {
-                PlacesCombobox.Items.Add(place);
-            }
+            categories = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl")).Get();
+            organizers = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl")).Get();
+            places = new PlacesGetter(LocalSettings.GetUrl("placesUrl")).Get();
+            
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            InitComboBoxes();
         }
 
+        private async void InitComboBoxes()
+        {
+            try
+            {
+                foreach (var category in await categories)
+                {
+                    CategoriesCombobox.Items.Add(category);
+                }
+                foreach (var organizer in await organizers)
+                {
+                    OrganizersCombobox.Items.Add(organizer);
+                }
+                foreach (var place in await places)
+                {
+                    PlacesCombobox.Items.Add(place);
+                }
+            } 
+            catch (Exception)
+            {
+                var msg = new MessageDialog("Please check Your internet connection!");
+                await msg.ShowAsync();
+            }
+        }
         
 
         /// <summary>
