@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Phone.UI.Input;
-using Windows.UI.Xaml;
+﻿using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PartyNow.DataContract.Service;
 using PartyNow.Mobile.Common;
@@ -30,11 +18,9 @@ namespace PartyNow.Mobile.Views
             this.InitializeComponent();
             HardwareButtons.BackPressed += (sender, args) =>
             {
-                if (Frame.CanGoBack)
-                {
-                    args.Handled = true;
-                    Frame.GoBack();
-                }
+                if (!Frame.CanGoBack) return;
+                args.Handled = true;
+                Frame.GoBack();
             };
         }
 
@@ -43,10 +29,10 @@ namespace PartyNow.Mobile.Views
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var query = e.Parameter as string;
-            var data = new EventsGetter(LocalSettings.GetUrl("eventsUrl")).GetBasedOnQuery(query);
+            var data = new EventsGetter(LocalSettings.GetUrl(ConstValues.EventsUrl)).GetBasedOnQuery(query);
             TempValue.Text = await data;
         }
     }

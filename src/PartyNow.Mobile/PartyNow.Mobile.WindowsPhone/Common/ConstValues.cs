@@ -5,6 +5,7 @@
         public const string CategoriesUrl = "categoriesUrl";
         public const string OrganizersUrl = "organizersUrl";
         public const string PlacesUrl = "placesUrl";
+        public const string EventsUrl = "eventsUrl";
 
         public class Communicates
         {
