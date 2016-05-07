@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using PartyNow.DataContract.Service;
+using PartyNow.Mobile.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -23,11 +24,9 @@ namespace PartyNow.Mobile.Views
     /// </summary>
     public sealed partial class Events : Page
     {
-        public Events(string query)
+        public Events()
         {
             this.InitializeComponent();
-            var data = new EventsGetter("s").GetBasedOnQuery(query);
-            TempValue.Text = data.Result;
         }
 
         /// <summary>
@@ -35,8 +34,11 @@ namespace PartyNow.Mobile.Views
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            var query = e.Parameter as string;
+            var data = new EventsGetter(LocalSettings.GetUrl("eventsUrl")).GetBasedOnQuery(query);
+            TempValue.Text = await data;
         }
     }
 }

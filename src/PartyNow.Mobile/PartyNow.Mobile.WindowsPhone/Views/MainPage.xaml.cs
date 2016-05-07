@@ -1,22 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Web.Http;
-using Windows.Web.Http.Filters;
 using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
@@ -32,20 +21,20 @@ namespace PartyNow.Mobile
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public CategoriesGetter categoriesGetter;
-        public OrganizersGetter organizersGetter;
-        public PlacesGetter placesGetter;
-        public IList<Categories> categories;
-        public IList<Organizers> organizers;
-        public IList<Places> places;
+        private readonly CategoriesGetter _categoriesGetter;
+        private readonly OrganizersGetter _organizersGetter;
+        private readonly PlacesGetter _placesGetter;
+        private IList<Categories> _categories;
+        private IList<Organizers> _organizers;
+        private IList<Places> _places;
 
         public MainPage()
         {
             this.InitializeComponent();
             LocalSettings.InitUrlsInStrageSettings();
-            categoriesGetter = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl"));
-            organizersGetter = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl"));
-            placesGetter = new PlacesGetter(LocalSettings.GetUrl("placesUrl"));
+            _categoriesGetter = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl"));
+            _organizersGetter = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl"));
+            _placesGetter = new PlacesGetter(LocalSettings.GetUrl("placesUrl"));
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
@@ -53,20 +42,20 @@ namespace PartyNow.Mobile
         private async Task InitComboBoxes()
         {
 
-            categories = await Task.Run(() => categoriesGetter.Get());
-            organizers = await Task.Run(() => organizersGetter.Get());
-            places = await Task.Run(() => placesGetter.Get());
+            _categories = await Task.Run(() => _categoriesGetter.Get());
+            _organizers = await Task.Run(() => _organizersGetter.Get());
+            _places = await Task.Run(() => _placesGetter.Get());
             try
             {
-                foreach (var category in categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = "Wszystkie"} }))
+                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = "Wszystkie"} }))
                 {
                     CategoriesCombobox.Items.Add(category);
                 }
-                foreach (var organizer in organizers.Concat(new[] { new Organizers()  { id = null, designation = "Wszystkie" } }))
+                foreach (var organizer in _organizers.Concat(new[] { new Organizers()  { id = null, designation = "Wszystkie" } }))
                 {
                     OrganizersCombobox.Items.Add(organizer);
                 }
-                foreach (var place in places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = "Wszystkie" } }))
+                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = "Wszystkie" } }))
                 {
                     PlacesCombobox.Items.Add(place);
                 }
@@ -98,11 +87,11 @@ namespace PartyNow.Mobile
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var param = new QueryBuilder()
-                .WhereCategoryIs(new[] { ((Categories)CategoriesCombobox.SelectedValue).id })
-                .WhereOrganizerIs(new[] { ((Organizers)OrganizersCombobox.SelectedValue).id })
-                .WherePlaceIs(new[] { ((Places)PlacesCombobox.SelectedValue).id })
+                .WhereCategoryIs(new[] { ((Categories)CategoriesCombobox.SelectedValue)?.id })
+                .WhereOrganizerIs(new [] { ((Organizers) OrganizersCombobox.SelectedValue)?.id})
+                .WherePlaceIs(new[] { ((Places)PlacesCombobox.SelectedValue)?.id })
                 .CreateQuery();
-            Frame.Navigate(typeof(Events), param);
+            Frame.Navigate(typeof (Events), param);
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
