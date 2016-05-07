@@ -32,7 +32,7 @@ namespace PartyNow.DataContract.Tests
             organizers.Count().ShouldBeGreaterThan(0);
             organizers.ForEach(organizer =>
             {
-                organizer.id.ShouldBeGreaterThan(0);
+                organizer.id.Value.ShouldBeGreaterThan(0);
                 organizer.designation.ShouldNotBeNullOrWhiteSpace();
             });
         }

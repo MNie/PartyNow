@@ -10,9 +10,13 @@
     }
     public class Places
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public Address address { get; set; }
         public string name { get; set; }
         public string subname { get; set; }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

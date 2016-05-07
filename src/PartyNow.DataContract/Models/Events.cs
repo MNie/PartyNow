@@ -24,7 +24,7 @@ namespace PartyNow.DataContract.Models
 
     public class Events
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public Places place { get; set; }
         public string endDate { get; set; }
         public string name { get; set; }
@@ -34,7 +34,7 @@ namespace PartyNow.DataContract.Models
         public int categoryId { get; set; }
         public string startDate { get; set; }
         public Organizers organizer { get; set; }
-        public int active { get; set; }
+        public int? active { get; set; }
         public Ticket tickets { get; set; }
         public string descShort { get; set; }
     }

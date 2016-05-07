@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -15,10 +16,12 @@ namespace PartyNow.DataContract.Service
 
         public virtual async Task<IList<TItem>> Get()
         {
-            using (var wc = new HttpClient())
+            string data;
+            using (var wc = new HttpClient() {Timeout = new TimeSpan(0, 0, 2, 0)})
             {
-                return JsonConvert.DeserializeObject<IList<TItem>>(await wc.GetStringAsync(_baseUrl));
+                data = await wc.GetStringAsync(_baseUrl);
             }
+            return JsonConvert.DeserializeObject<IList<TItem>>(data);
         }
     }
 }

@@ -23,13 +23,9 @@ namespace PartyNow.Mobile.Views
     /// </summary>
     public sealed partial class Events : Page
     {
-        public Events()
-        {
-            this.InitializeComponent();
-        }
-
         public Events(string query)
         {
+            this.InitializeComponent();
             var data = new EventsGetter("s").GetBasedOnQuery(query);
             TempValue.Text = data.Result;
         }

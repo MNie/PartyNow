@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid>
         <Grid>
@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Categories"></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Organizers"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Tickets"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Places"></TextBlock>
             
             <ComboBox Grid.Column="1" Grid.Row="1" x:Name="CategoriesCombobox"></ComboBox>
             <ComboBox Grid.Column="1" Grid.Row="2" x:Name="OrganizersCombobox"></ComboBox>
