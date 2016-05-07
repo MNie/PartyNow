@@ -17,7 +17,7 @@ namespace PartyNow.DataContract.Service
         {
             var today = DateTime.Now.ToString("yyyy-MM-dd");
             var query = $"{_baseUrl}?start_date={today}";
-            using (var wc = new HttpClient())
+            using (var wc = new HttpClient() {Timeout = new TimeSpan(0, 0, 2, 0)})
             {
                 return JsonConvert.DeserializeObject<IList<Events>>(await wc.GetStringAsync(query));
             }
@@ -28,7 +28,6 @@ namespace PartyNow.DataContract.Service
             var query = $"{_baseUrl}{baseQuery}";
             using (var wc = new HttpClient())
             {
-                //return JsonConvert.DeserializeObject<IEnumerable<Events>>(await wc.GetStringAsync(query));
                 return await wc.GetStringAsync(query);
             }
         }

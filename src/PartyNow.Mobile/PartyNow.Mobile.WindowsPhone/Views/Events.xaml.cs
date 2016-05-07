@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +28,14 @@ namespace PartyNow.Mobile.Views
         public Events()
         {
             this.InitializeComponent();
+            HardwareButtons.BackPressed += (sender, args) =>
+            {
+                if (Frame.CanGoBack)
+                {
+                    args.Handled = true;
+                    Frame.GoBack();
+                }
+            };
         }
 
         /// <summary>
@@ -34,7 +43,7 @@ namespace PartyNow.Mobile.Views
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var query = e.Parameter as string;
             var data = new EventsGetter(LocalSettings.GetUrl("eventsUrl")).GetBasedOnQuery(query);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -32,11 +33,39 @@ namespace PartyNow.Mobile
         {
             this.InitializeComponent();
             LocalSettings.InitUrlsInStrageSettings();
-            _categoriesGetter = new CategoriesGetter(LocalSettings.GetUrl("categoriesUrl"));
-            _organizersGetter = new OrganizersGetter(LocalSettings.GetUrl("organizersUrl"));
-            _placesGetter = new PlacesGetter(LocalSettings.GetUrl("placesUrl"));
+            _categoriesGetter = new CategoriesGetter(LocalSettings.GetUrl(ConstValues.CategoriesUrl));
+            _organizersGetter = new OrganizersGetter(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
+            _placesGetter = new PlacesGetter(LocalSettings.GetUrl(ConstValues.PlacesUrl));
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+        }
+
+        private async void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            e.Handled = true;
+            var msgDialog = new MessageDialog(ConstValues.Communicates.ExitApp);
+            msgDialog.Commands.Add(new UICommand(ConstValues.Communicates.Yes, BackButtonHandler));
+            msgDialog.Commands.Add(new UICommand(ConstValues.Communicates.No, BackButtonHandler));
+            await msgDialog.ShowAsync();
+        }
+
+        private static void BackButtonHandler(IUICommand command)
+        {
+            var label = command.Label;
+            switch (label)
+            {
+                case ConstValues.Communicates.Yes:
+                    {
+                        Application.Current.Exit();
+                        break;
+                    }
+                case ConstValues.Communicates.No:
+                    {
+                        break;
+                    }
+            }
         }
 
         private async Task InitComboBoxes()
@@ -47,15 +76,15 @@ namespace PartyNow.Mobile
             _places = await Task.Run(() => _placesGetter.Get());
             try
             {
-                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = "Wszystkie"} }))
+                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = ConstValues.AllOptions} }))
                 {
                     CategoriesCombobox.Items.Add(category);
                 }
-                foreach (var organizer in _organizers.Concat(new[] { new Organizers()  { id = null, designation = "Wszystkie" } }))
+                foreach (var organizer in _organizers.Concat(new[] { new Organizers()  { id = null, designation = ConstValues.AllOptions } }))
                 {
                     OrganizersCombobox.Items.Add(organizer);
                 }
-                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = "Wszystkie" } }))
+                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = ConstValues.AllOptions } }))
                 {
                     PlacesCombobox.Items.Add(place);
                 }
