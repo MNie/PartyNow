@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Common\ConstValues.cs" />
     <Compile Include="Common\LocalSettings.cs" />
+    <Compile Include="Common\Registry.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Views\Event.xaml.cs">
       <DependentUpon>Event.xaml</DependentUpon>
@@ -126,6 +127,15 @@
       <Project>{3ea9e87c-a55f-485c-bed9-011f4ab82054}</Project>
       <Name>PartyNow.DataContract</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Portable.Ninject.3.3.1\lib\Wpa81\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

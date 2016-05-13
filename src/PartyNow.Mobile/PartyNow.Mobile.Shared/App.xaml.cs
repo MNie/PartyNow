@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using PartyNow.Mobile.Common;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -53,7 +54,7 @@ namespace PartyNow.Mobile
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
+            Registry.Initialize();
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

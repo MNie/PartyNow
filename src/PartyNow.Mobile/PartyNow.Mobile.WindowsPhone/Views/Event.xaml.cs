@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using PartyNow.DataContract.Models;
-using PartyNow.Mobile.Common;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace PartyNow.Mobile.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class Event : Page
+    public sealed partial class Event
     {
         public Event()
         {
-            this.InitializeComponent();
-            HardwareButtons.BackPressed += (sender, args) =>
+            InitializeComponent();
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed();
+        }
+
+        private EventHandler<BackPressedEventArgs> HardwareButtonsOnBackPressed()
+        {
+            return (sender, args) =>
             {
                 if (!Frame.CanGoBack) return;
                 args.Handled = true;
@@ -31,11 +29,6 @@ namespace PartyNow.Mobile.Views
             };
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var @event = e.Parameter as DataContract.Models.Events;

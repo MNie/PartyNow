@@ -6,7 +6,12 @@ using Newtonsoft.Json;
 
 namespace PartyNow.DataContract.Service
 {
-    public abstract class BaseGetter<TItem>
+    public interface IBaseGetter<TItem>
+    {
+        Task<IList<TItem>> Get();
+    }
+
+    public abstract class BaseGetter<TItem> : IBaseGetter<TItem>
     {
         protected string _baseUrl;
         protected BaseGetter(string baseUrl)

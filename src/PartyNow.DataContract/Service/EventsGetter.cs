@@ -1,35 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using PartyNow.DataContract.Models;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using PartyNow.DataContract.Models;
 
 namespace PartyNow.DataContract.Service
 {
-    public class EventsGetter : BaseGetter<Events>
+    public class EventsGetter : RichGetter<Events>
     {
         public EventsGetter(string baseUrl) : base(baseUrl)
         {
-        }
-
-        public override async Task<IList<Events>> Get()
-        {
-            var today = DateTime.Now.ToString("yyyy-MM-dd");
-            var query = $"{_baseUrl}?start_date={today}";
-            using (var wc = new HttpClient() {Timeout = new TimeSpan(0, 0, 2, 0)})
-            {
-                return JsonConvert.DeserializeObject<IList<Events>>(await wc.GetStringAsync(query));
-            }
-        }
-
-        public async Task<IList<Events>> GetBasedOnQuery(string baseQuery)
-        {
-            var query = $"{_baseUrl}{baseQuery}";
-            using (var wc = new HttpClient())
-            {
-                return JsonConvert.DeserializeObject<IList<Events>>(await wc.GetStringAsync(query));
-            }
         }
     }
 }

@@ -5,39 +5,37 @@ using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Ninject;
 using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
 using PartyNow.Mobile.Common;
 using Events = PartyNow.Mobile.Views.Events;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace PartyNow.Mobile
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
-        private readonly CategoriesGetter _categoriesGetter;
-        private readonly OrganizersGetter _organizersGetter;
-        private readonly PlacesGetter _placesGetter;
+        [Inject]
+        private readonly IBaseGetter<Categories> _categoriesGetter;
+        [Inject]
+        private readonly IBaseGetter<Organizers> _organizersGetter;
+        [Inject]
+        private readonly IBaseGetter<Places> _placesGetter;
         private IList<Categories> _categories;
         private IList<Organizers> _organizers;
         private IList<Places> _places;
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             LocalSettings.InitUrlsInStrageSettings();
-            _categoriesGetter = new CategoriesGetter(LocalSettings.GetUrl(ConstValues.CategoriesUrl));
-            _organizersGetter = new OrganizersGetter(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
-            _placesGetter = new PlacesGetter(LocalSettings.GetUrl(ConstValues.PlacesUrl));
+            _categoriesGetter = Registry.Get<IBaseGetter<Categories>>();
+            _organizersGetter = Registry.Get<IBaseGetter<Organizers>>();
+            _placesGetter = Registry.Get<IBaseGetter<Places>>();
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Required;
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
@@ -78,15 +76,15 @@ namespace PartyNow.Mobile
             {
                 foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = ConstValues.AllOptions} }))
                 {
-                    CategoriesCombobox.Items.Add(category);
+                    CategoriesCombobox.Items?.Add(category);
                 }
                 foreach (var organizer in _organizers.Concat(new[] { new Organizers()  { id = null, designation = ConstValues.AllOptions } }))
                 {
-                    OrganizersCombobox.Items.Add(organizer);
+                    OrganizersCombobox.Items?.Add(organizer);
                 }
                 foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = ConstValues.AllOptions } }))
                 {
-                    PlacesCombobox.Items.Add(place);
+                    PlacesCombobox.Items?.Add(place);
                 }
             }
             catch (Exception e)
@@ -96,12 +94,6 @@ namespace PartyNow.Mobile
             }
         }
 
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO: Prepare page for display here.
