@@ -23,12 +23,12 @@ namespace PartyNow.DataContract.Service
             }
         }
 
-        public async /*Task<IEnumerable<Events>>*/ Task<string> GetBasedOnQuery(string baseQuery)
+        public async Task<IList<Events>> GetBasedOnQuery(string baseQuery)
         {
             var query = $"{_baseUrl}{baseQuery}";
             using (var wc = new HttpClient())
             {
-                return await wc.GetStringAsync(query);
+                return JsonConvert.DeserializeObject<IList<Events>>(await wc.GetStringAsync(query));
             }
         }
     }

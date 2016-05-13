@@ -9,6 +9,7 @@ namespace PartyNow.Mobile.Tests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

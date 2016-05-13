@@ -119,6 +119,7 @@ namespace PartyNow.Mobile
                 .WhereCategoryIs(new[] { ((Categories)CategoriesCombobox.SelectedValue)?.id })
                 .WhereOrganizerIs(new [] { ((Organizers) OrganizersCombobox.SelectedValue)?.id})
                 .WherePlaceIs(new[] { ((Places)PlacesCombobox.SelectedValue)?.id })
+                .WhereStartDateIs(DateTime.Now.ToString("yyyy-MM-dd"))
                 .CreateQuery();
             Frame.Navigate(typeof (Events), param);
         }

@@ -19,6 +19,6 @@
         </Grid.RowDefinitions>
         <ComboBox Grid.Column="0" Grid.Row="0" x:Name="TypeFilterCombobox"></ComboBox>
         <ComboBox Grid.Column="1" Grid.Row="0" x:Name="TypeValueFilterCombobox"></ComboBox>
-        <TextBlock x:Name="TempValue"></TextBlock>
+        <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" x:Name="ResultsListBox" SelectionChanged="ResultsListBox_SelectionChanged"></ListBox>
     </Grid>
 </Page>

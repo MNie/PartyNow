@@ -37,6 +37,11 @@ namespace PartyNow.DataContract.Models
         public int? active { get; set; }
         public Ticket tickets { get; set; }
         public string descShort { get; set; }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 
 

@@ -82,6 +82,10 @@
   <ItemGroup>
     <Compile Include="Common\ConstValues.cs" />
     <Compile Include="Common\LocalSettings.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Views\Event.xaml.cs">
+      <DependentUpon>Event.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Events.xaml.cs">
       <DependentUpon>Events.xaml</DependentUpon>
     </Compile>
@@ -104,6 +108,10 @@
     <Content Include="Assets\WideLogo.scale-240.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Event.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Events.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
