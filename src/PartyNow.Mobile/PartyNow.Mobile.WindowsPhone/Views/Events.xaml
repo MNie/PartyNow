@@ -17,8 +17,8 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ComboBox Grid.Column="0" Grid.Row="0" x:Name="TypeFilterCombobox"></ComboBox>
-        <ComboBox Grid.Column="1" Grid.Row="0" x:Name="TypeValueFilterCombobox"></ComboBox>
+        <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="0" Grid.Row="0" x:Name="TypeFilterCombobox"></ComboBox>
+        <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="0" x:Name="TypeValueFilterCombobox"></ComboBox>
         <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" x:Name="ResultsListBox" SelectionChanged="ResultsListBox_SelectionChanged"></ListBox>
     </Grid>
 </Page>
