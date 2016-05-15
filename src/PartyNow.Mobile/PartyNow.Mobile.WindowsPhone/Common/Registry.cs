@@ -1,4 +1,4 @@
-﻿using Ninject;
+﻿using InsertIt;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
 
@@ -6,19 +6,22 @@ namespace PartyNow.Mobile.Common
 {
     public static class Registry
     {
-        private static readonly IKernel Kernel = new StandardKernel();
+        private static Container _container;
 
         public static void Initialize()
         {
-            Kernel.Bind<IBaseGetter<Categories>>().To<CategoriesGetter>().WithConstructorArgument<string>(LocalSettings.GetUrl(ConstValues.CategoriesUrl));
-            Kernel.Bind<IBaseGetter<Places>>().To<PlacesGetter>().WithConstructorArgument<string>(LocalSettings.GetUrl(ConstValues.PlacesUrl));
-            Kernel.Bind<IRichGetter<Events>>().To<EventsGetter>().WithConstructorArgument<string>(LocalSettings.GetUrl(ConstValues.EventsUrl));
-            Kernel.Bind<IBaseGetter<Organizers>>().To<OrganizersGetter>().WithConstructorArgument<string>(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
+            _container = new Container(_ =>
+            {
+                _.Record<IBaseGetter<Categories>>().As<CategoriesGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.CategoriesUrl));
+                _.Record<IBaseGetter<Places>>().As<PlacesGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.PlacesUrl));
+                _.Record<IRichGetter<Events>>().As<EventsGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.EventsUrl));
+                _.Record<IBaseGetter<Organizers>>().As<OrganizersGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
+            });
         }
 
         public static TItem Get<TItem>()
         {
-            return Kernel.Get<TItem>();
+            return _container.Resolve<TItem>();
         }
     }
 }

@@ -6,7 +6,6 @@ using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using Ninject;
 using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
@@ -17,11 +16,8 @@ namespace PartyNow.Mobile
 {
     public sealed partial class MainPage
     {
-        [Inject]
         private readonly IBaseGetter<Categories> _categoriesGetter;
-        [Inject]
         private readonly IBaseGetter<Organizers> _organizersGetter;
-        [Inject]
         private readonly IBaseGetter<Places> _placesGetter;
         private IList<Categories> _categories;
         private IList<Organizers> _organizers;

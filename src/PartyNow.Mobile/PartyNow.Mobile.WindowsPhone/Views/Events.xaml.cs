@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Ninject;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
 using PartyNow.Mobile.Common;
@@ -14,7 +13,6 @@ namespace PartyNow.Mobile.Views
 {
     public sealed partial class Events
     {
-        [Inject]
         private readonly IRichGetter<DataContract.Models.Events> _eventsGetter;
         public Events()
         {
