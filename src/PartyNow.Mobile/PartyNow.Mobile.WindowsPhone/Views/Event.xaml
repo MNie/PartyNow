@@ -6,8 +6,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:ctr="using:LightStone.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="TemplateFullScreen">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding BitmapImage}" Width="200" VerticalAlignment="Bottom" 
+                               Stretch="Uniform"></Image>
+
+                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" ></Rectangle>
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateSnapped">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding BitmapImage}" Width="60" VerticalAlignment="Bottom" 
+                               Stretch="Uniform"></Image>
+
+                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" ></Rectangle>
+
+                <Image Grid.Row="1" VerticalAlignment="Top" Width="60"  Margin="0,10" 
+                               Source="{Binding BitmapImage}" Stretch="Uniform" 
+                               Opacity="0.1" >
+                    <Image.RenderTransform>
+                        <CompositeTransform ScaleY="1" />
+                    </Image.RenderTransform>
+                    <Image.Projection>
+                        <PlaneProjection RotationX="180"></PlaneProjection>
+                    </Image.Projection>
+                </Image>
+
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -17,20 +59,39 @@
         <ScrollViewer Grid.Row="0">
             <Grid>
                 <StackPanel x:Name="EventsPanel">
-                    <Grid x:Name="Attachments" Height="400"></Grid>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Name" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Where" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="StartDate" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="EndDate" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Organizer" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Tickets" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Description" Height="200"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Active" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="WhereToBuyTickets" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="Facebook" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" x:Name="WWW" Height="50"></TextBlock>
+                    <Grid x:Name="Attachments" Height="400">
+                        <ctr:LightStone ItemsSource="{Binding Images}" 
+                        SelectedIndex="0"
+                        ItemTemplate="{StaticResource TemplateFullScreen}"
+                        TransitionDuration="200" 
+                        Depth="70" 
+                        MaxVisibleItems="4"
+                        x:Name="Carousel"
+                        Rotation="50" 
+                        TranslateY="28"
+                        TranslateX ="23">
+                            <ctr:LightStone.EasingFunction>
+                                <CubicEase EasingMode="EaseOut" />
+                            </ctr:LightStone.EasingFunction>
+
+                        </ctr:LightStone>
+                    </Grid>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Name}" x:Name="Name" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Where}" x:Name="Where" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding StartDate}" x:Name="StartDate" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding EndDate}" x:Name="EndDate" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Organizer}" x:Name="Organizer" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Description}" x:Name="Description" Height="200"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Active}" x:Name="Active" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WhereToBuyTickets}" x:Name="WhereToBuyTickets" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Facebook}" x:Name="Facebook" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WWW}" x:Name="WWW" Height="50"></TextBlock>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>
 </Page>
+
+
+

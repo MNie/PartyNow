@@ -84,6 +84,7 @@
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\Registry.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\EventModel.cs" />
     <Compile Include="Views\Event.xaml.cs">
       <DependentUpon>Event.xaml</DependentUpon>
     </Compile>
@@ -133,8 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InsertIt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\InsertIt.1.0.2\lib\InsertIt.dll</HintPath>
+      <HintPath>..\..\..\packages\InsertIt.1.0.3\lib\InsertIt.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="LightStone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libraries\LightStone.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
