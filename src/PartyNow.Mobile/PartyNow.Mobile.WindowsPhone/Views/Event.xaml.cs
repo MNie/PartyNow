@@ -26,7 +26,6 @@ namespace PartyNow.Mobile.Views
             {
                 if (!Frame.CanGoBack) return;
                 args.Handled = true;
-                Frame.GoBack();
             };
         }
 

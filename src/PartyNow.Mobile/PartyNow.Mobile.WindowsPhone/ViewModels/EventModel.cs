@@ -10,7 +10,7 @@ namespace PartyNow.Mobile.ViewModels
 {
     internal class EventModel
     {
-        public ObservableCollection<object> Datas { get; set; }
+        public ObservableCollection<object> Images { get; set; }
         public string Name { get; set; }
         public string Where { get; set; }
         public string StartDate { get; set; }
@@ -24,6 +24,7 @@ namespace PartyNow.Mobile.ViewModels
         public string WWW { get; set; }
         public EventModel(Events @event)
         {
+            Images = new ObservableCollection<object>();
             if (@event?.name != null) Name = @event.name;
             if (@event?.place?.name != null) Where = @event.place?.name;
             if (@event?.startDate != null) StartDate = @event.startDate;
@@ -46,7 +47,7 @@ namespace PartyNow.Mobile.ViewModels
                         urls.Select(attachment => new Uri(attachment.filename, UriKind.Absolute))
                             .Select(uri => new BitmapImage(uri)))
                 {
-                    Datas.Add(new Data
+                    Images.Add(new Data
                     {
                         BitmapImage = bmi,
                         Title = ""
