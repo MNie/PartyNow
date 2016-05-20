@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using PartyNow.DataContract.Models;
@@ -31,7 +32,7 @@ namespace PartyNow.Mobile.ViewModels
             if (@event?.endDate != null) EndDate = @event.endDate;
             if (@event?.organizer?.designation != null) Organizer = @event.organizer?.designation;
             if (@event?.tickets?.type != null) Tickets = @event.tickets?.type;
-            if (@event?.descLong != null) Description = @event.descLong;
+            if (@event?.descLong != null) Description = Regex.Replace(@event.descLong, @"<[^>]+>|&nbsp;", "").Trim();
             if (@event?.active != null) Active = @event.active.ToString();
             if (@event?.urls?.tickets != null) WhereToBuyTickets = @event.urls?.tickets;
             if (@event?.urls?.www != null) WWW = @event?.urls?.www;

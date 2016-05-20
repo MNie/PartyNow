@@ -84,9 +84,21 @@
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Description}" x:Name="Description" Height="200"></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Active}" x:Name="Active" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WhereToBuyTickets}" x:Name="WhereToBuyTickets" Height="50"></TextBlock>
+                    <HyperlinkButton NavigateUri="{Binding WhereToBuyTickets}">
+                        <HyperlinkButton.Content>
+                            <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WhereToBuyTickets}" x:Name="WhereToBuyTickets" Height="50"></TextBlock>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="{Binding Facebook}">
+                        <HyperlinkButton.Content>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Facebook}" x:Name="Facebook" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WWW}" x:Name="WWW" Height="50"></TextBlock>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="{Binding WWW}">
+                                <HyperlinkButton.Content>
+                                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WWW}" x:Name="WWW" Height="50"></TextBlock>
+                        </HyperlinkButton.Content>
+                    </HyperlinkButton>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

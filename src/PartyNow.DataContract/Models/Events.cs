@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PartyNow.DataContract.Models
 {
@@ -26,13 +27,13 @@ namespace PartyNow.DataContract.Models
     {
         public int? id { get; set; }
         public Places place { get; set; }
-        public string endDate { get; set; }
+        public DateTime? endDate { get; set; }
         public string name { get; set; }
         public Url urls { get; set; }
         public IEnumerable<Attachment> attachments { get; set; }
         public string descLong { get; set; }
         public int categoryId { get; set; }
-        public string startDate { get; set; }
+        public DateTime? startDate { get; set; }
         public Organizers organizer { get; set; }
         public int? active { get; set; }
         public Ticket tickets { get; set; }
@@ -40,7 +41,7 @@ namespace PartyNow.DataContract.Models
 
         public override string ToString()
         {
-            return name;
+            return $"{startDate} - {endDate} {name}";
         }
     }
 
