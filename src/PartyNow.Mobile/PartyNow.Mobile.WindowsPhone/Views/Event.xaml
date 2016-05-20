@@ -82,7 +82,7 @@
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding EndDate}" x:Name="EndDate" Height="50"></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Organizer}" x:Name="Organizer" Height="50"></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Description}" x:Name="Description" Height="200"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Description}" x:Name="Description" Height="200" TextWrapping="WrapWholeWords"></TextBlock>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Active}" x:Name="Active" Height="50"></TextBlock>
                     <HyperlinkButton NavigateUri="{Binding WhereToBuyTickets}">
                         <HyperlinkButton.Content>
