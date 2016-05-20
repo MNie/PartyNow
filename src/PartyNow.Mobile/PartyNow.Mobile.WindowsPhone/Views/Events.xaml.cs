@@ -33,16 +33,47 @@ namespace PartyNow.Mobile.Views
         {
             var query = e.Parameter as string;
             var data = await GetData(query);
-            TypeFilterCombobox.Items?.Add(typeof(DataContract.Models.Events).GetRuntimeProperties());
-            TypeFilterCombobox.SelectionChanged += (sender, args) =>
+            foreach (var x in typeof (DataContract.Models.Events).GetRuntimeProperties())
             {
-                TypeValueFilterCombobox.Items?.Add(
-                    data.Select(x => x.GetType().GetRuntimeProperty(args.AddedItems.First().ToString()).GetValue(x)));
-            };
+                TypeFilterCombobox.Items?.Add(x.Name);
+            }
+            TypeFilterCombobox.SelectionChanged += GetValueBasedOnProperty(data);
+            TypeValueFilterCombobox.SelectionChanged += FilterResultsBasedOnFilters(data);
             foreach (var @event in data.OrderBy(x => x.startDate))
             {
                 ResultsListBox.Items?.Add(@event);
             }
+        }
+
+        private SelectionChangedEventHandler GetValueBasedOnProperty(IList<DataContract.Models.Events> data)
+        {
+            return (sender, args) =>
+            {
+                TypeValueFilterCombobox.Items?.Clear();
+                foreach (var singleData in data.Select(x => x.GetType().GetRuntimeProperty(args.AddedItems.First().ToString()).GetValue(x)).Distinct())
+                {
+                    TypeValueFilterCombobox.Items?.Add(singleData);
+                }
+            };
+        }
+
+        private SelectionChangedEventHandler FilterResultsBasedOnFilters(IList<DataContract.Models.Events> data)
+        {
+            return (sender, args) =>
+            {
+                ResultsListBox.Items?.Clear();
+                foreach (
+                    var @event in
+                        data.OrderBy(x => x.startDate)
+                            .Where(
+                                x =>
+                                    x.GetType()
+                                        .GetRuntimeProperty(TypeFilterCombobox?.SelectedItem.ToString())
+                                        .GetValue(x).Equals(TypeValueFilterCombobox.SelectionBoxItem)))
+                {
+                    ResultsListBox.Items?.Add(@event);
+                }
+            };
         }
 
         private async Task<IList<DataContract.Models.Events>> GetData(string parameter)
