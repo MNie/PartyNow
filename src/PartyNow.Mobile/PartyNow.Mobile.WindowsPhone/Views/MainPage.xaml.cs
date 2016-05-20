@@ -26,7 +26,7 @@ namespace PartyNow.Mobile
         public MainPage()
         {
             InitializeComponent();
-            LocalSettings.InitUrlsInStrageSettings();
+            LocalSettings.InitUrlsInStorageSettings();
             _categoriesGetter = Registry.Get<IBaseGetter<Categories>>();
             _organizersGetter = Registry.Get<IBaseGetter<Organizers>>();
             _placesGetter = Registry.Get<IBaseGetter<Places>>();
@@ -45,13 +45,14 @@ namespace PartyNow.Mobile
             await msgDialog.ShowAsync();
         }
 
-        private static void BackButtonHandler(IUICommand command)
+        private void BackButtonHandler(IUICommand command)
         {
             var label = command.Label;
             switch (label)
             {
                 case ConstValues.Communicates.Yes:
                     {
+                        HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
                         Application.Current.Exit();
                         break;
                     }
@@ -109,6 +110,7 @@ namespace PartyNow.Mobile
                 .WherePlaceIs(new[] { ((Places)PlacesCombobox.SelectedValue)?.id })
                 .WhereStartDateIs(DateTime.Now.ToString("yyyy-MM-dd"))
                 .CreateQuery();
+            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             Frame.Navigate(typeof (Events), param);
         }
 

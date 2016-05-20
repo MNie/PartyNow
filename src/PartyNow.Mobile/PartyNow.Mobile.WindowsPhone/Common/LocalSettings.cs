@@ -5,7 +5,7 @@ namespace PartyNow.Mobile.Common
     internal class LocalSettings
     {
         private static readonly ApplicationDataContainer Settings = ApplicationData.Current.LocalSettings;
-        internal static void InitUrlsInStrageSettings()
+        internal static void InitUrlsInStorageSettings()
         {
             Settings.Values["categoriesUrl"] = @"http://planer.info.pl/api/rest/categories.json";
             Settings.Values["organizersUrl"] = @"http://planer.info.pl/api/rest/organizers.json";

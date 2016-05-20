@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
@@ -18,7 +19,7 @@ namespace PartyNow.Mobile.ViewModels
         public string EndDate { get; set; }
         public string Organizer { get; set; }
         public string Tickets { get; set; }
-        private string Description { get; set; }
+        public string Description { get; set; }
         public string Active { get; set; }
         public string WhereToBuyTickets { get; set; }
         public string Facebook { get; set; }
@@ -32,8 +33,8 @@ namespace PartyNow.Mobile.ViewModels
             if (@event?.endDate != null) EndDate = @event.endDate.ToString();
             if (@event?.organizer?.designation != null) Organizer = @event.organizer?.designation;
             if (@event?.tickets?.type != null) Tickets = @event.tickets?.type;
-            if (@event?.descLong != null) Description = Regex.Replace(@event.descLong, @"<[^>]+>|&nbsp;", "").Trim();
-            if (@event?.active != null) Active = @event.active.ToString();
+            if (@event?.descLong != null) Description = WebUtility.HtmlEncode(Regex.Replace(@event.descLong, @"<[^>]+>|&nbsp;", "").Trim());
+            if (@event?.active != null) Active = @event.active == 1 ? "aktualne" : "nie aktualne";
             if (@event?.urls?.tickets != null) WhereToBuyTickets = @event.urls?.tickets;
             if (@event?.urls?.www != null) WWW = @event?.urls?.www;
             if (@event?.urls?.fb != null) Facebook = @event?.urls?.fb;

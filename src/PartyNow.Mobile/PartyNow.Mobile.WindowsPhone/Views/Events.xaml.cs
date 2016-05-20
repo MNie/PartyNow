@@ -18,17 +18,15 @@ namespace PartyNow.Mobile.Views
         {
             InitializeComponent();
             _eventsGetter = Registry.Get<IRichGetter<DataContract.Models.Events>>();
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed();
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
 
-        private EventHandler<BackPressedEventArgs> HardwareButtonsOnBackPressed()
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs e)
         {
-            return (sender, args) =>
-            {
-                if (!Frame.CanGoBack) return;
-                args.Handled = true;
-                Frame.GoBack();
-            };
+            if (!Frame.CanGoBack) return;
+            e.Handled = true;
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+            Frame.GoBack();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -55,6 +53,7 @@ namespace PartyNow.Mobile.Views
         private void ResultsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var @event = e.AddedItems.FirstOrDefault();
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
             Frame.Navigate(typeof (Event), @event);
         }
     }

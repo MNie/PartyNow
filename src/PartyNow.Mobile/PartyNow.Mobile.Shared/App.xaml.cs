@@ -45,6 +45,7 @@ namespace PartyNow.Mobile
             }
 #endif
             Registry.Initialize();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

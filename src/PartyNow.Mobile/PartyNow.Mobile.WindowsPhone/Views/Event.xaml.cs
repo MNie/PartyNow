@@ -11,16 +11,15 @@ namespace PartyNow.Mobile.Views
         public Event()
         {
             InitializeComponent();
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed();
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
 
-        private EventHandler<BackPressedEventArgs> HardwareButtonsOnBackPressed()
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs e)
         {
-            return (sender, args) =>
-            {
-                if (!Frame.CanGoBack) return;
-                args.Handled = true;
-            };
+            if (!Frame.CanGoBack) return;
+            e.Handled = true;
+            Frame.GoBack();
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
