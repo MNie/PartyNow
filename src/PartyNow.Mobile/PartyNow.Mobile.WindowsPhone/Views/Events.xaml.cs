@@ -41,7 +41,7 @@ namespace PartyNow.Mobile.Views
                 TypeValueFilterCombobox.Items?.Add(
                     data.Select(x => x.GetType().GetRuntimeProperty(args.AddedItems.First().ToString()).GetValue(x)));
             };
-            foreach (var @event in data.OrderBy(x => DateTime.Parse(x.startDate)))
+            foreach (var @event in data.OrderBy(x => x.startDate))
             {
                 ResultsListBox.Items?.Add(@event);
             }

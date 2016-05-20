@@ -28,8 +28,8 @@ namespace PartyNow.Mobile.ViewModels
             Images = new ObservableCollection<object>();
             if (@event?.name != null) Name = @event.name;
             if (@event?.place?.name != null) Where = @event.place?.name;
-            if (@event?.startDate != null) StartDate = @event.startDate;
-            if (@event?.endDate != null) EndDate = @event.endDate;
+            if (@event?.startDate != null) StartDate = @event.startDate.ToString();
+            if (@event?.endDate != null) EndDate = @event.endDate.ToString();
             if (@event?.organizer?.designation != null) Organizer = @event.organizer?.designation;
             if (@event?.tickets?.type != null) Tickets = @event.tickets?.type;
             if (@event?.descLong != null) Description = Regex.Replace(@event.descLong, @"<[^>]+>|&nbsp;", "").Trim();
