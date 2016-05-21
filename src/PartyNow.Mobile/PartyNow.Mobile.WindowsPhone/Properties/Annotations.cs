@@ -78,7 +78,7 @@ namespace PartyNow.Mobile.Annotations
     AttributeTargets.Property | AttributeTargets.Delegate)]
   public sealed class StringFormatMethodAttribute : Attribute
   {
-    /// <param name="formatParameterName">
+    /// <param nazwa="formatParameterName">
     /// Specifies which parameter of an annotated method should be treated as format-string
     /// </param>
     public StringFormatMethodAttribute(string formatParameterName)
@@ -180,7 +180,7 @@ namespace PartyNow.Mobile.Annotations
   /// <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
   /// <item>Value    ::= true | false | null | notnull | canbenull</item>
   /// </list>
-  /// If method has single input parameter, it's name could be omitted.<br/>
+  /// If method has single input parameter, it's nazwa could be omitted.<br/>
   /// Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
   /// for method output means that the methos doesn't return normally.<br/>
   /// <c>canbenull</c> annotation is only applicable for output parameters.<br/>
@@ -615,7 +615,7 @@ namespace PartyNow.Mobile.Annotations
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
-  /// is an MVC action. If applied to a method, the MVC action name is calculated
+  /// is an MVC action. If applied to a method, the MVC action nazwa is calculated
   /// implicitly from the context. Use this attribute for custom wrappers similar to
   /// <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>.
   /// </summary>
@@ -650,7 +650,7 @@ namespace PartyNow.Mobile.Annotations
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is
-  /// an MVC controller. If applied to a method, the MVC controller name is calculated
+  /// an MVC controller. If applied to a method, the MVC controller nazwa is calculated
   /// implicitly from the context. Use this attribute for custom wrappers similar to
   /// <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>.
   /// </summary>
@@ -682,7 +682,7 @@ namespace PartyNow.Mobile.Annotations
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC
-  /// partial view. If applied to a method, the MVC partial view name is calculated implicitly
+  /// partial view. If applied to a method, the MVC partial view nazwa is calculated implicitly
   /// from the context. Use this attribute for custom wrappers similar to
   /// <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>.
   /// </summary>
@@ -721,7 +721,7 @@ namespace PartyNow.Mobile.Annotations
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
-  /// is an MVC view component. If applied to a method, the MVC view name is calculated implicitly
+  /// is an MVC view component. If applied to a method, the MVC view nazwa is calculated implicitly
   /// from the context. Use this attribute for custom wrappers similar to
   /// <c>System.Web.Mvc.Controller.View(Object)</c>.
   /// </summary>
@@ -730,21 +730,21 @@ namespace PartyNow.Mobile.Annotations
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
-  /// is an MVC view component name.
+  /// is an MVC view component nazwa.
   /// </summary>
   [AttributeUsage(AttributeTargets.Parameter)]
   public sealed class AspMvcViewComponentAttribute : Attribute { }
 
   /// <summary>
   /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
-  /// is an MVC view component view. If applied to a method, the MVC view component view name is default.
+  /// is an MVC view component view. If applied to a method, the MVC view component view nazwa is default.
   /// </summary>
   [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
   public sealed class AspMvcViewComponentViewAttribute : Attribute { }
 
   /// <summary>
   /// ASP.NET MVC attribute. When applied to a parameter of an attribute,
-  /// indicates that this parameter is an MVC action name.
+  /// indicates that this parameter is an MVC action nazwa.
   /// </summary>
   /// <example><code>
   /// [ActionName("Foo")]

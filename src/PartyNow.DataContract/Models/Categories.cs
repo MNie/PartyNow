@@ -16,5 +16,10 @@
         {
             return name;
         }
+
+        public override bool Equals(object obj)
+        {
+            return id.Equals((obj as Categories).id);
+        }
     }
 }

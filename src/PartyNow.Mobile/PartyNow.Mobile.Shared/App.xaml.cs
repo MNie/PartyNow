@@ -35,7 +35,7 @@ namespace PartyNow.Mobile
         /// will be used when the application is launched to open a specific file, to display
         /// search results, and so forth.
         /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
+        /// <param nazwa="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
@@ -49,7 +49,7 @@ namespace PartyNow.Mobile
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
+            // just ensure that the window is aktualny
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
@@ -93,7 +93,7 @@ namespace PartyNow.Mobile
                 }
             }
 
-            // Ensure the current window is active
+            // Ensure the current window is aktualny
             Window.Current.Activate();
         }
 
@@ -101,8 +101,8 @@ namespace PartyNow.Mobile
         /// <summary>
         /// Restores the content transitions after the app has launched.
         /// </summary>
-        /// <param name="sender">The object where the handler is attached.</param>
-        /// <param name="e">Details about the navigation event.</param>
+        /// <param nazwa="sender">The object where the handler is attached.</param>
+        /// <param nazwa="e">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
@@ -116,8 +116,8 @@ namespace PartyNow.Mobile
         /// without knowing whether the application will be terminated or resumed with the contents
         /// of memory still intact.
         /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
+        /// <param nazwa="sender">The source of the suspend request.</param>
+        /// <param nazwa="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();

@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.Phone.UI.Input;
+﻿using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Navigation;
 using PartyNow.Mobile.ViewModels;
 

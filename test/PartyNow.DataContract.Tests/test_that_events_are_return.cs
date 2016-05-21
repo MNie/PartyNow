@@ -18,7 +18,7 @@ namespace PartyNow.DataContract.Tests
             events.ForEach(@event =>
             {
                 @event.categoryId.ShouldBeGreaterThan(0);
-                @event.name.ShouldNotBeNullOrWhiteSpace();
+                @event.nazwa.ShouldNotBeNullOrWhiteSpace();
             });
         }
 

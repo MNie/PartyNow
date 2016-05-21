@@ -1,4 +1,6 @@
-﻿namespace PartyNow.Mobile.Common
+﻿using System.Collections.Generic;
+
+namespace PartyNow.Mobile.Common
 {
     class ConstValues
     {
@@ -15,5 +17,14 @@
         }
 
         public const string AllOptions = "Wszystkie";
+        public static IEnumerable<string> EventPropertiesToExclude = new List<string>()
+        {
+            "id",
+            "urls",
+            "attachments",
+            "descLong",
+            "categoryId",
+            "descShort"
+        };
     }
 }

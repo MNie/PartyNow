@@ -27,14 +27,14 @@ namespace PartyNow.Mobile.ViewModels
         public EventModel(Events @event)
         {
             Images = new ObservableCollection<object>();
-            if (@event?.name != null) Name = @event.name;
-            if (@event?.place?.name != null) Where = @event.place?.name;
-            if (@event?.startDate != null) StartDate = @event.startDate.ToString();
-            if (@event?.endDate != null) EndDate = @event.endDate.ToString();
-            if (@event?.organizer?.designation != null) Organizer = @event.organizer?.designation;
-            if (@event?.tickets?.type != null) Tickets = @event.tickets?.type;
+            if (@event?.nazwa != null) Name = @event.nazwa;
+            if (@event?.miejsce?.name != null) Where = @event.miejsce?.name;
+            if (@event?.start != null) StartDate = @event.start.ToString();
+            if (@event?.koniec != null) EndDate = @event.koniec.ToString();
+            if (@event?.organizator?.designation != null) Organizer = @event.organizator?.designation;
+            if (@event?.bilet?.type != null) Tickets = @event.bilet?.type;
             if (@event?.descLong != null) Description = WebUtility.HtmlEncode(Regex.Replace(@event.descLong, @"<[^>]+>|&nbsp;", "").Trim());
-            if (@event?.active != null) Active = @event.active == 1 ? "aktualne" : "nie aktualne";
+            if (@event?.aktualny != null) Active = @event.aktualny == 1 ? "aktualne" : "nie aktualne";
             if (@event?.urls?.tickets != null) WhereToBuyTickets = @event.urls?.tickets;
             if (@event?.urls?.www != null) WWW = @event?.urls?.www;
             if (@event?.urls?.fb != null) Facebook = @event?.urls?.fb;

@@ -32,13 +32,13 @@ namespace PartyNow.Mobile.Views
         {
             var query = e.Parameter as string;
             var data = await GetData(query);
-            foreach (var x in typeof (DataContract.Models.Events).GetRuntimeProperties())
+            foreach (var x in typeof (DataContract.Models.Events).GetRuntimeProperties().Where(x => !ConstValues.EventPropertiesToExclude.Contains(x.Name)))
             {
                 TypeFilterCombobox.Items?.Add(x.Name);
             }
             TypeFilterCombobox.SelectionChanged += GetValueBasedOnProperty(data);
             TypeValueFilterCombobox.SelectionChanged += FilterResultsBasedOnFilters(data);
-            foreach (var @event in data.OrderBy(x => x.startDate))
+            foreach (var @event in data.OrderBy(x => x.start))
             {
                 ResultsListBox.Items?.Add(@event);
             }
@@ -63,7 +63,7 @@ namespace PartyNow.Mobile.Views
                 ResultsListBox.Items?.Clear();
                 foreach (
                     var @event in
-                        data.OrderBy(x => x.startDate)
+                        data.OrderBy(x => x.start)
                             .Where(
                                 x =>
                                     x.GetType()

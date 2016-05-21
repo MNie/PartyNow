@@ -21,9 +21,9 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="Categories"></TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Organizers"></TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Places"></TextBlock>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="Kategorie"></TextBlock>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Organizatorzy"></TextBlock>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Miejsca"></TextBlock>
 
             <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="1" x:Name="CategoriesCombobox"></ComboBox>
             <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="2" x:Name="OrganizersCombobox"></ComboBox>

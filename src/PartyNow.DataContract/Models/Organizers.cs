@@ -8,5 +8,10 @@
         {
             return designation;
         }
+
+        public override bool Equals(object obj)
+        {
+            return id.Equals((obj as Organizers).id);
+        }
     }
 }
