@@ -23,5 +23,11 @@
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
     </Style>
-    
+
+    <Style x:Name="RichTextBoxStyle" TargetType="RichTextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="20"></Setter>
+    </Style>
+
 </ResourceDictionary>

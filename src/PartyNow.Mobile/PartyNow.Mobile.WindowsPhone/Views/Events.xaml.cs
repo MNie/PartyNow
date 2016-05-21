@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -45,7 +44,7 @@ namespace PartyNow.Mobile.Views
             }
         }
 
-        private SelectionChangedEventHandler GetValueBasedOnProperty(IList<DataContract.Models.Events> data)
+        private SelectionChangedEventHandler GetValueBasedOnProperty(IEnumerable<DataContract.Models.Events> data)
         {
             return (sender, args) =>
             {
@@ -57,7 +56,7 @@ namespace PartyNow.Mobile.Views
             };
         }
 
-        private SelectionChangedEventHandler FilterResultsBasedOnFilters(IList<DataContract.Models.Events> data)
+        private SelectionChangedEventHandler FilterResultsBasedOnFilters(IEnumerable<DataContract.Models.Events> data)
         {
             return (sender, args) =>
             {
@@ -68,8 +67,8 @@ namespace PartyNow.Mobile.Views
                             .Where(
                                 x =>
                                     x.GetType()
-                                        .GetRuntimeProperty(TypeFilterCombobox?.SelectedItem.ToString())
-                                        .GetValue(x).Equals(TypeValueFilterCombobox.SelectionBoxItem)))
+                                        .GetRuntimeProperty(TypeFilterCombobox?.SelectedItem?.ToString())
+                                        .GetValue(x).Equals(TypeValueFilterCombobox.SelectedItem)))
                 {
                     ResultsListBox.Items?.Add(@event);
                 }
