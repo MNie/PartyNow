@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
@@ -71,23 +72,35 @@ namespace PartyNow.Mobile
             _places = await Task.Run(() => _placesGetter.Get());
             try
             {
-                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories() {id = null, name = ConstValues.AllOptions} }))
+                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories{id = null, name = ConstValues.AllOptions} }))
                 {
                     CategoriesCombobox.Items?.Add(category);
                 }
-                foreach (var organizer in _organizers.Concat(new[] { new Organizers()  { id = null, designation = ConstValues.AllOptions } }))
+                foreach (var organizer in _organizers.Concat(new[] { new Organizers  { id = null, designation = ConstValues.AllOptions } }))
                 {
                     OrganizersCombobox.Items?.Add(organizer);
                 }
-                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places() { id = null, name = ConstValues.AllOptions } }))
+                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places { id = null, name = ConstValues.AllOptions } }))
                 {
                     PlacesCombobox.Items?.Add(place);
                 }
+                CategoriesCombobox.SelectionChanged += CategoriesComboboxOnSelectionChanged;
             }
             catch (Exception e)
             {
                 var msg = new MessageDialog("Please check Your internet connection!");
                 await msg.ShowAsync();
+            }
+        }
+
+        private void CategoriesComboboxOnSelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            foreach (var concreteCategories in _categories
+                .Where(x => x.root_category != null)
+                .Where(x => x.root_category.id == (selectionChangedEventArgs.AddedItems.First() as Categories)?.id)
+                .Concat(new [] {new Categories {id = null, name = ConstValues.AllOptions}}))
+            {
+                ConcreteCategoriesCombobox.Items?.Add(concreteCategories);
             }
         }
 
@@ -105,7 +118,7 @@ namespace PartyNow.Mobile
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var param = new QueryBuilder()
-                .WhereCategoryIs(new[] { ((Categories)CategoriesCombobox.SelectedValue)?.id })
+                .WhereCategoryIs(new[] { ((Categories)CategoriesCombobox.SelectedValue)?.id, ((Categories)ConcreteCategoriesCombobox.SelectedValue)?.id })
                 .WhereOrganizerIs(new [] { ((Organizers) OrganizersCombobox.SelectedValue)?.id})
                 .WherePlaceIs(new[] { ((Places)PlacesCombobox.SelectedValue)?.id })
                 .WhereStartDateIs(DateTime.Now.ToString("yyyy-MM-dd"))
