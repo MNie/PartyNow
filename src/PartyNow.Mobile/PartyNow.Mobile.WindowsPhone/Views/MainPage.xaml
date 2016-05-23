@@ -26,6 +26,8 @@
             <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="2" Text="Organizatorzy"></TextBlock>
             <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0" Grid.Row="3" Text="Miejsca"></TextBlock>
 
+            <ProgressRing Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="2" x:Name="DataLodingRing" IsActive="True" Height="200" Width="200"></ProgressRing>
+            
             <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="0" x:Name="CategoriesCombobox"></ComboBox>
             <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="1" x:Name="ConcreteCategoriesCombobox"></ComboBox>
             <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Column="1" Grid.Row="2" x:Name="OrganizersCombobox"></ComboBox>

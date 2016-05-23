@@ -66,21 +66,29 @@ namespace PartyNow.Mobile
 
         private async Task InitComboBoxes()
         {
-
+            DataLodingRing.IsActive = true;
             _categories = await Task.Run(() => _categoriesGetter.Get());
             _organizers = await Task.Run(() => _organizersGetter.Get());
             _places = await Task.Run(() => _placesGetter.Get());
             try
             {
-                foreach (var category in _categories.Where(x => x.root_category == null).Concat(new [] {new Categories{id = null, name = ConstValues.AllOptions} }))
+                foreach (
+                    var category in
+                        _categories.Where(x => x.root_category == null)
+                            .Concat(new[] {new Categories {id = null, name = ConstValues.AllOptions}}))
                 {
                     CategoriesCombobox.Items?.Add(category);
                 }
-                foreach (var organizer in _organizers.Concat(new[] { new Organizers  { id = null, designation = ConstValues.AllOptions } }))
+                foreach (
+                    var organizer in
+                        _organizers.Concat(new[] {new Organizers {id = null, designation = ConstValues.AllOptions}}))
                 {
                     OrganizersCombobox.Items?.Add(organizer);
                 }
-                foreach (var place in _places.Where(x => x.subname == null).Concat(new[] { new Places { id = null, name = ConstValues.AllOptions } }))
+                foreach (
+                    var place in
+                        _places.Where(x => x.subname == null)
+                            .Concat(new[] {new Places {id = null, name = ConstValues.AllOptions}}))
                 {
                     PlacesCombobox.Items?.Add(place);
                 }
@@ -90,6 +98,10 @@ namespace PartyNow.Mobile
             {
                 var msg = new MessageDialog("Please check Your internet connection!");
                 await msg.ShowAsync();
+            }
+            finally
+            {
+                DataLodingRing.IsActive = false;
             }
         }
 
