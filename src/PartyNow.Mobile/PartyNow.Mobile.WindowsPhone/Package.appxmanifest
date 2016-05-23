@@ -1,41 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-
-  <Identity Name="7ab2fb4e-4eaa-49db-ba87-35c9cc4d448c"
-            Publisher="CN=micha"
-            Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="7ab2fb4e-4eaa-49db-ba87-35c9cc4d448c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+  <Identity Name="7ab2fb4e-4eaa-49db-ba87-35c9cc4d448c" Publisher="CN=micha" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="7ab2fb4e-4eaa-49db-ba87-35c9cc4d448c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>PartyNow.Mobile.WindowsPhone</DisplayName>
-    <PublisherDisplayName>micha</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <PublisherDisplayName>MNie</PublisherDisplayName>
+    <Logo>Assets\img_120_120.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.3.1</OSMinVersion>
     <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
   </Prerequisites>
-  
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="PartyNow.Mobile.WindowsPhone.App">
-        <m3:VisualElements
-            DisplayName="PartyNow.Mobile.WindowsPhone"
-            Square150x150Logo="Assets\Logo.png"
-            Square44x44Logo="Assets\SmallLogo.png"
-            Description="PartyNow.Mobile.WindowsPhone"
-            ForegroundText="light"
-            BackgroundColor="transparent">
-            <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"/>
-            <m3:SplashScreen Image="Assets\SplashScreen.png"/>
-        </m3:VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="PartyNow.Mobile.WindowsPhone.App">
+      <m3:VisualElements DisplayName="PartyNow" Square150x150Logo="Assets\img_150_150.png" Square44x44Logo="Assets\img_44_44.png" Description="Aplikacja umożliwiająca przeglądanie aktualnych wydarzeń w Trójmieście." ForegroundText="light" BackgroundColor="transparent">
+        <m3:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\img_58_58.png" />
+        <m3:DefaultTile Wide310x150Logo="Assets\img_310_150.png" Square71x71Logo="Assets\img_71_71.png">
+          <m3:ShowNameOnTiles>
+            <m3:ShowOn Tile="wide310x150Logo" />
+          </m3:ShowNameOnTiles>
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\img_1152_1920.png" />
+        <m3:InitialRotationPreference>
+          <m3:Rotation Preference="portrait" />
+          <m3:Rotation Preference="landscape" />
+          <m3:Rotation Preference="landscapeFlipped" />
+        </m3:InitialRotationPreference>
+      </m3:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
