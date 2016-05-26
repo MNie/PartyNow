@@ -6,3 +6,9 @@ _ReSharper.*
 *.ncrunchsolution
 *.ncrunchproject
 _NCrunch*
+AppPackages/
+Assets/
+BundleArtifacts/
+Package.appxmanifest
+Package.StoreAssociation.xml
+AdMediator.config

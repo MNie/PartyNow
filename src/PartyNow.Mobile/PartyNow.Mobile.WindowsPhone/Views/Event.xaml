@@ -1,12 +1,13 @@
 ﻿<Page
-    x:Class="PartyNow.Mobile.Views.Event"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PartyNow.Mobile.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     xmlns:ctr="using:LightStone.Controls"
+    xmlns:WindowsPhone81="using:Microsoft.AdMediator.WindowsPhone81"
+    x:Class="PartyNow.Mobile.Views.Event"
+    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -17,9 +18,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Image Source="{Binding BitmapImage}" Width="300" VerticalAlignment="Bottom" 
-                               Stretch="Uniform"></Image>
+        			Stretch="Uniform"/>
 
-                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" ></Rectangle>
+                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" />
 
             </Grid>
         </DataTemplate>
@@ -31,77 +32,72 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Image Source="{Binding BitmapImage}" Width="100" VerticalAlignment="Bottom" 
-                               Stretch="Uniform"></Image>
+        			Stretch="Uniform"/>
 
-                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" ></Rectangle>
+                <Rectangle Grid.Row="1" Fill="Black" Margin="0,10" />
 
                 <Image Grid.Row="1" VerticalAlignment="Top" Width="100"  Margin="0,10" 
-                               Source="{Binding BitmapImage}" Stretch="Uniform" 
-                               Opacity="0.1" >
+        			Source="{Binding BitmapImage}" Stretch="Uniform" 
+        			Opacity="0.1" >
                     <Image.RenderTransform>
                         <CompositeTransform ScaleY="1" />
                     </Image.RenderTransform>
                     <Image.Projection>
-                        <PlaneProjection RotationX="180"></PlaneProjection>
+                        <PlaneProjection RotationX="180"/>
                     </Image.Projection>
                 </Image>
 
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         </Grid>
         <ScrollViewer Grid.Row="0">
             <Grid>
                 <StackPanel x:Name="EventsPanel">
+                    <WindowsPhone81:AdMediatorControl Height="50" HorizontalAlignment="Stretch"/>
                     <Grid x:Name="Attachments" Height="400">
                         <ctr:LightStone ItemsSource="{Binding Images}" 
-                        SelectedIndex="0"
-                        ItemTemplate="{StaticResource TemplateFullScreen}"
-                        TransitionDuration="200" 
-                        Depth="70" 
-                        MaxVisibleItems="4"
-                        x:Name="Carousel"
-                        Rotation="50" 
-                        TranslateY="28"
-                        TranslateX ="23">
+							SelectedIndex="0"
+							ItemTemplate="{StaticResource TemplateFullScreen}"
+							TransitionDuration="200" 
+							Depth="70" 
+							MaxVisibleItems="4"
+							x:Name="Carousel"
+							Rotation="50" 
+							TranslateY="28"
+							TranslateX ="23">
                             <ctr:LightStone.EasingFunction>
                                 <CubicEase EasingMode="EaseOut" />
                             </ctr:LightStone.EasingFunction>
 
                         </ctr:LightStone>
                     </Grid>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Name}" x:Name="Name" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Where}" x:Name="Where" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding StartDate}" x:Name="StartDate" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding EndDate}" x:Name="EndDate" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Organizer}" x:Name="Organizer" Height="50"></TextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Name}" x:Name="Name" Height="50"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Where}" x:Name="Where" Height="50"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding StartDate}" x:Name="StartDate" Height="50"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding EndDate}" x:Name="EndDate" Height="50"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Organizer}" x:Name="Organizer" Height="50"/>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"/>
                     <RichTextBlock Style="{StaticResource RichTextBoxStyle}" x:Name="Description" Height="200" TextWrapping="WrapWholeWords">
                         <Paragraph>
-                            <Run Text="{Binding Description}"></Run>
+                            <Run Text="{Binding Description}"/>
                         </Paragraph>
                     </RichTextBlock>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Active}" x:Name="Active" Height="50"></TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Active}" x:Name="Active" Height="50"/>
                     <HyperlinkButton NavigateUri="{Binding WhereToBuyTickets}">
-                        <HyperlinkButton.Content>
-                            <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WhereToBuyTickets}" x:Name="WhereToBuyTickets" Height="50"></TextBlock>
-                        </HyperlinkButton.Content>
+                        <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WhereToBuyTickets}" x:Name="WhereToBuyTickets" Height="50"/>
                     </HyperlinkButton>
                     <HyperlinkButton NavigateUri="{Binding Facebook}">
-                        <HyperlinkButton.Content>
-                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Facebook}" x:Name="Facebook" Height="50"></TextBlock>
-                        </HyperlinkButton.Content>
+                        <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Facebook}" x:Name="Facebook" Height="50"/>
                     </HyperlinkButton>
                     <HyperlinkButton NavigateUri="{Binding WWW}">
-                                <HyperlinkButton.Content>
-                                    <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WWW}" x:Name="WWW" Height="50"></TextBlock>
-                        </HyperlinkButton.Content>
+                        <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding WWW}" x:Name="WWW" Height="50"/>
                     </HyperlinkButton>
                 </StackPanel>
             </Grid>
