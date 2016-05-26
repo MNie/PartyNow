@@ -1,4 +1,5 @@
-﻿using InsertIt.Common;
+﻿using Windows.Devices.Geolocation;
+using InsertIt.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
 
@@ -16,6 +17,7 @@ namespace PartyNow.Mobile.Common
                 _.Record<IBaseGetter<Places>>().As<PlacesGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.PlacesUrl));
                 _.Record<IRichGetter<Events>>().As<EventsGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.EventsUrl));
                 _.Record<IBaseGetter<Organizers>>().As<OrganizersGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
+                _.Record<Geolocator>().As<Geolocator>();
             });
         }
 

@@ -85,6 +85,8 @@
     <Compile Include="Common\ConstValues.cs" />
     <Compile Include="Common\LocalSettings.cs" />
     <Compile Include="Common\Registry.cs" />
+    <Compile Include="Infrastructure\AppLocalization.cs" />
+    <Compile Include="Infrastructure\Localization.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\EventModel.cs" />
     <Compile Include="Views\Event.xaml.cs">
