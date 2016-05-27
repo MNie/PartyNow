@@ -37,4 +37,11 @@
             <my:AdMediatorControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="BanerAd" HorizontalAlignment="Stretch" Id="AdMediator-Id-A165C943-6913-4EC3-9C57-0F0A9748F647" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="AppBar" IsEnabled="True">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Find" Label="Znajdź w pobliżu" Click="AppBarButton_Click"></AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

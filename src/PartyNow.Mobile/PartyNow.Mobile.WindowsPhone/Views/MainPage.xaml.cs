@@ -11,6 +11,8 @@ using PartyNow.DataContract.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
 using PartyNow.Mobile.Common;
+using PartyNow.Mobile.Exceptions;
+using PartyNow.Mobile.Infrastructure;
 using Events = PartyNow.Mobile.Views.Events;
 
 namespace PartyNow.Mobile
@@ -23,6 +25,7 @@ namespace PartyNow.Mobile
         private IList<Categories> _categories;
         private IList<Organizers> _organizers;
         private IList<Places> _places;
+        private readonly ILocalization _localization;
 
         public MainPage()
         {
@@ -31,6 +34,7 @@ namespace PartyNow.Mobile
             _categoriesGetter = Registry.Get<IBaseGetter<Categories>>();
             _organizersGetter = Registry.Get<IBaseGetter<Organizers>>();
             _placesGetter = Registry.Get<IBaseGetter<Places>>();
+            _localization = Registry.Get<ILocalization>();
 
             NavigationCacheMode = NavigationCacheMode.Required;
 
@@ -67,9 +71,9 @@ namespace PartyNow.Mobile
         private async Task InitComboBoxes()
         {
             DataLodingRing.IsActive = true;
-            _categories = await Task.Run(() => _categoriesGetter.Get());
-            _organizers = await Task.Run(() => _organizersGetter.Get());
-            _places = await Task.Run(() => _placesGetter.Get());
+            _categories = _categories ?? await Task.Run(() => _categoriesGetter.Get());
+            _organizers = _organizers ?? await Task.Run(() => _organizersGetter.Get());
+            _places = _places ?? await Task.Run(() => _placesGetter.Get());
             try
             {
                 foreach (
@@ -96,7 +100,7 @@ namespace PartyNow.Mobile
             }
             catch (Exception e)
             {
-                var msg = new MessageDialog("Please check Your internet connection!");
+                var msg = new MessageDialog("Proszę sprawdź swoje połączenie sieciowe!");
                 await msg.ShowAsync();
             }
             finally
@@ -142,6 +146,24 @@ namespace PartyNow.Mobile
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await InitComboBoxes();
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var nearbyPlaces = await _localization.GetPlacesIdBasedOnCurrentLocalization(_places);
+                var param = new QueryBuilder()
+                    .WherePlaceIs(nearbyPlaces)
+                    .CreateQuery();
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+                Frame.Navigate(typeof (Events), param);
+            }
+            catch (LocalizationDisabled ld)
+            {
+                var msg = new MessageDialog(ld.Message);
+                await msg.ShowAsync();
+            }
         }
     }
 }

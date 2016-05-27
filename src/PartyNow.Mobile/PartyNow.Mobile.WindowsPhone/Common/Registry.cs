@@ -2,6 +2,7 @@
 using InsertIt.Common;
 using PartyNow.DataContract.Models;
 using PartyNow.DataContract.Service;
+using PartyNow.Mobile.Infrastructure;
 
 namespace PartyNow.Mobile.Common
 {
@@ -18,6 +19,7 @@ namespace PartyNow.Mobile.Common
                 _.Record<IRichGetter<Events>>().As<EventsGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.EventsUrl));
                 _.Record<IBaseGetter<Organizers>>().As<OrganizersGetter>().Ctor<string>(LocalSettings.GetUrl(ConstValues.OrganizersUrl));
                 _.Record<Geolocator>().As<Geolocator>();
+                _.Record<ILocalization>().As<Localization>();
             });
         }
 
