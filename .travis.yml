@@ -1,8 +1,8 @@
 language: csharp
-solution: InsertIt.sln
+solution: PartyNow.Mobile.sln
 install:
-  - nuget restore InsertIt.sln
+  - nuget restore PartyNow.Mobile.sln
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release InsertIt.sln
+  - xbuild /p:Configuration=Release PartyNow.Mobile.sln
   - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./test/PartyNow.DataContract.Tests/bin/Release/PartyNow.DataContract.Tests.dll
