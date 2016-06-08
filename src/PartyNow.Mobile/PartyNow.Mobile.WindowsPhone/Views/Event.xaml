@@ -84,7 +84,7 @@
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding EndDate}" x:Name="EndDate" Height="50"/>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Organizer}" x:Name="Organizer" Height="50"/>
                     <TextBlock Style="{StaticResource TextBlockInfoStyle}" Text="{Binding Tickets}" x:Name="Tickets" Height="50"/>
-                    <RichTextBlock Style="{StaticResource RichTextBoxStyle}" x:Name="Description" Height="200" TextWrapping="WrapWholeWords">
+                    <RichTextBlock Style="{StaticResource RichTextBoxStyle}" x:Name="Description" Height="200">
                         <Paragraph>
                             <Run Text="{Binding Description}"/>
                         </Paragraph>

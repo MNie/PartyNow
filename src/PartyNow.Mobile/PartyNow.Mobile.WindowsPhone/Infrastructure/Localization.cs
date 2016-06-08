@@ -16,7 +16,7 @@ namespace PartyNow.Mobile.Infrastructure
     internal class Localization : ILocalization
     {
         private readonly Geolocator _geolocator;
-        private const double MaxDistanceToNearbyEventLocalization = 5.0;
+        private const double MaxDistanceToNearbyEventLocalization = 1.5;
 
         public Localization(Geolocator geolocator)
         {

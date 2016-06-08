@@ -22,12 +22,14 @@
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="TextWrapping" Value="WrapWholeWords"></Setter>
     </Style>
 
     <Style x:Name="RichTextBoxStyle" TargetType="RichTextBlock">
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="TextWrapping" Value="WrapWholeWords"></Setter>
     </Style>
 
 </ResourceDictionary>

@@ -22,7 +22,7 @@ namespace PartyNow.DataContract.Service
         public virtual async Task<IList<TItem>> Get()
         {
             string data;
-            using (var wc = new HttpClient() {Timeout = new TimeSpan(0, 0, 2, 0)})
+            using (var wc = new HttpClient() {Timeout = new TimeSpan(0, 0, 20, 0)})
             {
                 data = await wc.GetStringAsync(_baseUrl);
             }
