@@ -72,7 +72,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
-    <SDKReference Include="MSTestFramework, Version=14.0" />
     <SDKReference Include="TestPlatform, Version=14.0" />
   </ItemGroup>
   <ItemGroup>
