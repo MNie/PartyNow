@@ -24,7 +24,7 @@ namespace PartyNow.Mobile.Infrastructure
             _geolocator.DesiredAccuracyInMeters = 5;
         }
 
-        public async Task<AppLocalization> GetCurrentLocalization()
+        private async Task<AppLocalization> GetCurrentLocalization()
         {
             if (_geolocator.LocationStatus == PositionStatus.Disabled)
             {

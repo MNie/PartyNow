@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using Windows.Devices.Geolocation;
-using Windows.UI.Xaml;
 using PartyNow.DataContract.Models;
 
 namespace PartyNow.Mobile.Infrastructure
@@ -14,7 +13,7 @@ namespace PartyNow.Mobile.Infrastructure
 
         public static explicit operator AppLocalization(Geoposition geoposition)
         {
-            return new AppLocalization()
+            return new AppLocalization
             {
                 Longitude = geoposition.Coordinate.Point.Position.Longitude,
                 Latitude = geoposition.Coordinate.Point.Position.Latitude,
